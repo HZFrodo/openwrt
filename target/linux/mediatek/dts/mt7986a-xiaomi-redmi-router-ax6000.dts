@@ -12,10 +12,12 @@
 
 	aliases {
 		serial0 = &uart0;
+#if 0
 		led-boot = &led_status_green;
 		led-failsafe = &led_status_yellow;
 		led-running = &led_status_white;
 		led-upgrade = &led_status_blue;
+#endif
 	};
 
 	chosen {
@@ -220,62 +222,18 @@
 	status = "okay";
 
 	miwifi-hm0807a-led@0x00 {
-			compatible = "xiaomi,HM0807A";
+			compatible = "xiaomi,ws2812b-spi";
 			reg = <0x00>;
 			spi-max-frequency = <3000000>;
 
 			status_led@0 {
-				led@0 {
-					label = "red:status";
-					default-state = "on";
-				};
-
-				led_status_blue: led@1 {
-					label = "blue:status";
-					default-state = "off";
-				};
-
-				led_status_yellow: led@2 {
-					label = "yellow:status";
-					default-state = "off";
-				};
-
-				led_status_white: led@3 {
-					label = "white:status";
-					default-state = "off";
-				};
-
-				led_status_green: led@4 {
-					label = "green:status";
-					default-state = "off";
-				};
+				label = "multicolor:status";
+				default-state = "off";
 			};
 
 			network_led@1 {
-				led@0 {
-					label = "red:network";
-					default-state = "off";
-				};
-
-				led@1 {
-					label = "blue:network";
-					default-state = "off";
-				};
-
-				led@2 {
-					label = "yellow:network";
-					default-state = "off";
-				};
-
-				led@3 {
-					label = "white:network";
-					default-state = "off";
-				};
-
-				led@4 {
-					label = "green:network";
-					default-state = "off";
-				};
+				label = "multicolor:network";
+				default-state = "off";
 			};
 	};
 };
